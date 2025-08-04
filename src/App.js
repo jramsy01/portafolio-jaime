@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Menu, X, Code, Palette, Rocket, Award, Users, Target } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Menu, X, Code, Palette, Rocket, Award, Users, Target } from 'lucide-react';
 import emailjs from '@emailjs/browser'; // AGREGAR ESTA LÍNEA
 
 const Portfolio = () => {
