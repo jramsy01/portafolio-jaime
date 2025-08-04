@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Menu, X, Code, Palette, Rocket, Award, Users, Target } from 'lucide-react';
+import emailjs from '@emailjs/browser'; // AGREGAR ESTA LÍNEA
 
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -7,6 +8,16 @@ const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollProgress, setScrollProgress] = useState(0);
   const heroRef = useRef(null);
+
+  // AGREGAR ESTOS ESTADOS PARA EL FORMULARIO
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    asunto: '',
+    mensaje: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
 
   // Mouse tracking para efectos parallax
   useEffect(() => {
@@ -55,6 +66,60 @@ const Portfolio = () => {
     setIsMenuOpen(false);
   };
 
+  // AGREGAR ESTAS FUNCIONES PARA EL FORMULARIO
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setMessage({ text: '', type: '' });
+
+    try {
+      // AQUÍ VAN TUS CREDENCIALES DE EMAILJS
+      const serviceId = 'service_ar7ujka'; // Reemplaza con tu Service ID
+      const templateId = 'template_6wnfiot'; // Reemplaza con tu Template ID
+      const publicKey = 'rQ0d_M3irhwfkEADb'; // Reemplaza con tu Public Key
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.nombre,
+          from_email: formData.email,
+          subject: formData.asunto,
+          message: formData.mensaje,
+          to_name: 'Jaime Rojas',
+        },
+        publicKey
+      );
+
+      setMessage({ 
+        text: '¡Mensaje enviado con éxito! Te contactaré pronto.', 
+        type: 'success' 
+      });
+      
+      setFormData({
+        nombre: '',
+        email: '',
+        asunto: '',
+        mensaje: ''
+      });
+    } catch (error) {
+      setMessage({ 
+        text: 'Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.', 
+        type: 'error' 
+      });
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const projects = [
     {
       id: 1,
@@ -76,8 +141,8 @@ const Portfolio = () => {
     },
     {
       id: 3,
-      title: "Gestion De paogs de bancos PHP",
-      description: "Gestion De paogs de bancos PHP con sistema de autenticacion y Sistema de Generacion de reportes con PHP",
+      title: "Gestion De pagos de bancos PHP",
+      description: "Gestion De pagos de bancos PHP con sistema de autenticacion y Sistema de Generacion de reportes con PHP",
       image: "/banco.png",
       tech: ["PHP", "MySQL", "PHPMyAdmin"],
       github: "https://github.com/jramsy01/formv.git",
@@ -345,7 +410,7 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - REEMPLAZAR TODA ESTA SECCIÓN */}
       <section id="contacto" className="py-20 px-6 bg-gray-800/50">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 opacity-0 section-animate">
@@ -355,35 +420,69 @@ const Portfolio = () => {
             <p className="text-center text-gray-300 mb-8">
               ¿Tienes un proyecto en mente? ¡Me encantaría escucharte!
             </p>
-            <div className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <input
                   type="text"
+                  name="nombre"
                   placeholder="Nombre"
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                 />
                 <input
                   type="email"
+                  name="email"
                   placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                 />
               </div>
               <input
                 type="text"
+                name="asunto"
                 placeholder="Asunto"
+                value={formData.asunto}
+                onChange={handleChange}
+                required
                 className="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
               />
               <textarea
+                name="mensaje"
                 placeholder="Mensaje"
                 rows="5"
+                value={formData.mensaje}
+                onChange={handleChange}
+                required
                 className="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all resize-none"
               />
+              
+              {/* Mensaje de estado */}
+              {message.text && (
+                <div className={`p-4 rounded-lg text-center ${
+                  message.type === 'success' 
+                    ? 'bg-green-500/20 text-green-400' 
+                    : 'bg-red-500/20 text-red-400'
+                }`}>
+                  {message.text}
+                </div>
+              )}
+              
               <button
-                className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
+                type="submit"
+                disabled={isLoading}
+                className={`w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold transition-all duration-300 
+                  ${isLoading 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105'
+                  }`}
               >
-                Enviar Mensaje
+                {isLoading ? 'Enviando...' : 'Enviar Mensaje'}
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </section>
