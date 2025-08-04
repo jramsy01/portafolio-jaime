@@ -60,35 +60,35 @@ const Portfolio = () => {
       id: 1,
       title: "Juego de Chest Con integracion de IA",
       description: "Juego de Chest con integracion de IA y Sistema de Pagos con Stripe",
-      image: "./src/assets/chest.png",
+      image: "/chess.png",
       tech: ["React", "Node.js", "MongoDB", "Stripe", "AI"],
-      github: "#",
+      github: "https://github.com/jramsy01/grupo-10.git",
       live: "#"
     },
     {
       id: 2,
-      title: "Sistema de Libreria virtual E-Book",
-      description: "Sistema de Libreria virtual E-Book con sistema de autenticacion y sistema de pagos con Stripe",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+      title: "Pagina De Informacion Sobre Inteligencia Artificial",
+      description: "Pagina De Informacion Sobre Inteligencia Artificial con animaciones llamativas y Dinamicas",
+      image: "/smartroom.png",
       tech: ["React", "Express", "PostgreSQL", "Stripe"],
-      github: "#",
+      github: "https://github.com/jramsy01/inteligencia-artificial.html.git",
       live: "#"
     },
     {
       id: 3,
       title: "Gestion De paogs de bancos PHP",
       description: "Gestion De paogs de bancos PHP con sistema de autenticacion y Sistema de Generacion de reportes con PHP",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      image: "/banco.png",
       tech: ["PHP", "MySQL", "PHPMyAdmin"],
-      github: "#",
+      github: "https://github.com/jramsy01/formv.git",
       live: "#"
     }
   ];
 
   const skills = [
-    { name: "Frontend", items: ["React", "Vue.js", "TypeScript", "Next.js", "TailwindCSS"], icon: <Code className="w-8 h-8" /> },
-    { name: "Backend", items: ["Node.js", "Express", "Python", "Django", "PostgreSQL"], icon: <Rocket className="w-8 h-8" /> },
-    { name: "Diseño", items: ["Figma", "Adobe XD", "Photoshop", "UI/UX", "Responsive Design"], icon: <Palette className="w-8 h-8" /> }
+    { name: "Frontend", items: ["React", "TypeScript", "Css", "TailwindCSS"], icon: <Code className="w-8 h-8" /> },
+    { name: "Backend", items: ["Csharp", "PHP", "JavaScript", "Python", "MongoDB", "SQL", "Node.js", "Express", "Stripe", "AI","Android Studio",], icon: <Rocket className="w-8 h-8" /> },
+    { name: "Diseño", items: ["Figma", "Adobe XD", "Photoshop", "Canva", "Responsive Design"], icon: <Palette className="w-8 h-8" /> }
   ];
 
   return (
@@ -191,13 +191,13 @@ const Portfolio = () => {
             Full Stack Developer & Creative Mind
           </p>
           <div className="flex justify-center space-x-4 mb-12 animate-fade-in-delay-2">
-            <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-purple-500 transition-all duration-300 hover:scale-110">
+            <a href="https://github.com/jramsy01" className="p-3 bg-gray-800 rounded-full hover:bg-purple-500 transition-all duration-300 hover:scale-110">
               <Github size={24} />
             </a>
-            <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-purple-500 transition-all duration-300 hover:scale-110">
+            <a href="https://www.linkedin.com/in/jaime-rojas-1913a6223" className="p-3 bg-gray-800 rounded-full hover:bg-purple-500 transition-all duration-300 hover:scale-110">
               <Linkedin size={24} />
             </a>
-            <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-purple-500 transition-all duration-300 hover:scale-110">
+            <a href="mailto:jramsy.jr@gmail.com" className="p-3 bg-gray-800 rounded-full hover:bg-purple-500 transition-all duration-300 hover:scale-110">
               <Mail size={24} />
             </a>
           </div>
@@ -224,7 +224,7 @@ const Portfolio = () => {
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+                  src="/yo.jpg" 
                   alt="Jaime Rojas"
                   className="relative rounded-lg w-full"
                 />
@@ -233,7 +233,7 @@ const Portfolio = () => {
             <div className="space-y-6 opacity-0 section-animate">
               <p className="text-gray-300 leading-relaxed">
                 Soy un desarrollador apasionado por crear experiencias digitales únicas y memorables. 
-                Con más de 5 años de experiencia en desarrollo web, me especializo en construir 
+                Con más de 4 años de experiencia en desarrollo web, me especializo en construir 
                 aplicaciones escalables y con un diseño excepcional.
               </p>
               <p className="text-gray-300 leading-relaxed">
@@ -243,12 +243,12 @@ const Portfolio = () => {
               <div className="grid grid-cols-3 gap-4 pt-6">
                 <div className="text-center">
                   <Award className="w-8 h-8 mx-auto mb-2 text-purple-400" />
-                  <div className="text-2xl font-bold">50+</div>
+                  <div className="text-2xl font-bold">25+</div>
                   <div className="text-sm text-gray-400">Proyectos</div>
                 </div>
                 <div className="text-center">
                   <Users className="w-8 h-8 mx-auto mb-2 text-purple-400" />
-                  <div className="text-2xl font-bold">30+</div>
+                  <div className="text-2xl font-bold">10+</div>
                   <div className="text-sm text-gray-400">Clientes</div>
                 </div>
                 <div className="text-center">
@@ -298,9 +298,9 @@ const Portfolio = () => {
                       <a href={project.github} className="flex items-center hover:text-purple-400 transition-colors">
                         <Github size={20} className="mr-2" /> Code
                       </a>
-                      <a href={project.live} className="flex items-center hover:text-purple-400 transition-colors">
-                        <ExternalLink size={20} className="mr-2" /> Demo
-                      </a>
+                        {/* <a href={project.live} className="flex items-center hover:text-purple-400 transition-colors">
+                          <ExternalLink size={20} className="mr-2" /> Demo
+                        </a> */}
                     </div>
                   </div>
                 </div>
