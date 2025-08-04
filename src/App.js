@@ -123,8 +123,8 @@ const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: "Juego de Chest Con integracion de IA",
-      description: "Juego de Chest con integracion de IA y Sistema de Pagos con Stripe",
+      title: "Juego de Chess Con integracion de IA",
+      description: "Juego de Chess con integracion de IA y Sistema de Pagos con Stripe",
       image: "/chess.png",
       tech: ["React", "Node.js", "MongoDB", "Stripe", "AI"],
       github: "https://github.com/jramsy01/grupo-10.git",
