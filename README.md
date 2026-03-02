@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Portafolio Jaime Rojas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Portafolio profesional desarrollado con React para presentar proyectos de gran impacto institucional, habilidades técnicas y canal de contacto.
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+- React 19 + `react-scripts` (CRA)
+- CSS custom
+- `motion` para animaciones UI
+- EmailJS (opcional) para formulario de contacto
 
-### `npm start`
+## Requisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js 18+ (recomendado LTS)
+- npm 9+
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalación
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Variables de entorno
 
-### `npm run build`
+1. Copia el archivo de ejemplo:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+cp .env.example .env.local
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Completa tus llaves de EmailJS en `.env.local`:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```env
+REACT_APP_EMAILJS_SERVICE_ID=
+REACT_APP_EMAILJS_TEMPLATE_ID=
+REACT_APP_EMAILJS_PUBLIC_KEY=
+```
 
-### `npm run eject`
+Si no configuras estas variables, el formulario usará `mailto:` como fallback.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Desarrollo local
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+App en `http://localhost:3000`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Testing y build
 
-## Learn More
+```bash
+npm test -- --watchAll=false
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## SEO y dominio
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Se configuraron:
 
-### Code Splitting
+- `public/index.html` (meta tags OG/Twitter + JSON-LD)
+- `public/robots.txt`
+- `public/sitemap.xml`
+- `public/manifest.json`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Dominio actual configurado: `https://rojas.baby`.
 
-### Analyzing the Bundle Size
+## Deploy (Cloudflare Pages)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Este repo ya incluye soporte para Cloudflare Pages:
 
-### Making a Progressive Web App
+- `public/_redirects` para SPA fallback (`/* /index.html 200`)
+- `public/_headers` con cabeceras de seguridad y cache
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Pasos
 
-### Advanced Configuration
+1. Conecta el repositorio en Cloudflare Pages.
+2. Configura:
+- Framework preset: `Create React App`
+- Build command: `npm run build`
+- Build output directory: `build`
+3. Define variables de entorno (si usas EmailJS):
+- `REACT_APP_EMAILJS_SERVICE_ID`
+- `REACT_APP_EMAILJS_TEMPLATE_ID`
+- `REACT_APP_EMAILJS_PUBLIC_KEY`
+4. Asocia el dominio personalizado `rojas.baby`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Deploy alternativo
 
-### Deployment
+- Vercel: `vercel.json`
+- Netlify: `netlify.toml`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## CI (GitHub Actions)
 
-### `npm run build` fails to minify
+El proyecto incluye workflow en `.github/workflows/ci.yml` que ejecuta:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm ci`
+- `npm test -- --watchAll=false --runInBand`
+- `npm run build`
+
+En cada `push` y `pull_request` a `main`.
+
+## Seguridad
+
+- No subir `.env` ni `.env.local` al repositorio.
+- Si alguna key fue expuesta previamente, rotarla en EmailJS.
+- Mantener dependencias actualizadas.

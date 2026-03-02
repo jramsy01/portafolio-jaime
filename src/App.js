@@ -155,7 +155,14 @@ const INITIAL_FORM = {
 
 function App() {
   const publicBase = (process.env.PUBLIC_URL || '').replace(/\/$/, '');
-  const profileSources = [`${publicBase}/yo.jpg`, '/yo.jpg', 'yo.jpg'].filter(
+  const profileSources = [
+    `${publicBase}/yo.webp`,
+    `${publicBase}/yo.jpg`,
+    '/yo.webp',
+    '/yo.jpg',
+    'yo.webp',
+    'yo.jpg',
+  ].filter(
     (value, index, array) => Boolean(value) && array.indexOf(value) === index,
   );
   const [profileSourceIndex, setProfileSourceIndex] = useState(0);
@@ -232,7 +239,10 @@ function App() {
           publicKey,
         );
 
-        setStatusMessage({ type: 'success', text: 'Mensaje enviado correctamente. Te responderé pronto.' });
+        setStatusMessage({
+          type: 'success',
+          text: 'Correo enviado correctamente. Si me demoro un poco, estoy peleando con SQL.',
+        });
       } else {
         const subject = encodeURIComponent(formData.asunto);
         const body = encodeURIComponent(
@@ -242,7 +252,7 @@ function App() {
         window.location.href = `mailto:jramsy.jr@gmail.com?subject=${subject}&body=${body}`;
         setStatusMessage({
           type: 'success',
-          text: 'Se abrió tu cliente de correo para completar el envío.',
+          text: 'Tu correo está casi enviado correctamente: dale a "Enviar" y sale volando.',
         });
       }
 
