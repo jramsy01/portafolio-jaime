@@ -154,6 +154,7 @@ const INITIAL_FORM = {
 };
 
 function App() {
+  const profilePhotoUrl = `${process.env.PUBLIC_URL}/yo.jpg`;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
   const [activeProject, setActiveProject] = useState(IMPACT_PROJECTS[0].id);
@@ -340,7 +341,7 @@ function App() {
             <aside className="hero-panel" aria-label="Resumen profesional">
               <figure className="profile-photo-wrap">
                 <img
-                  src="/yo.jpg"
+                  src={profilePhotoUrl}
                   alt="Foto de Jaime Rojas"
                   className="profile-photo"
                   loading="lazy"
