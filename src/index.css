@@ -276,6 +276,22 @@ ul {
   animation: floatIn 650ms ease both;
 }
 
+.profile-photo-wrap {
+  width: min(180px, 100%);
+  margin: 0 auto 0.95rem;
+  border-radius: 16px;
+  padding: 4px;
+  background: linear-gradient(135deg, rgba(60, 160, 255, 0.52), rgba(255, 255, 255, 0.18));
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
 .hero-panel h2 {
   font-family: 'Sora', sans-serif;
   font-size: 1rem;

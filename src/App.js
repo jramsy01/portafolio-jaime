@@ -338,6 +338,14 @@ function App() {
             </div>
 
             <aside className="hero-panel" aria-label="Resumen profesional">
+              <figure className="profile-photo-wrap">
+                <img
+                  src="/yo.jpg"
+                  alt="Foto de Jaime Rojas"
+                  className="profile-photo"
+                  loading="lazy"
+                />
+              </figure>
               <h2>Enfoque de trabajo</h2>
               <ul>
                 <li>Sistemas administrativos de alta responsabilidad</li>
